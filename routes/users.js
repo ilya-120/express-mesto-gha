@@ -1,34 +1,20 @@
 const router = require('express').Router();
-const User = require('../models/user');
+const {
+  createUser,
+  getUser,
+  getUsers,
+  setUser,
+  setAvatar,
+} = require('../controllers/users');
 
-router.post('/', (req, res) => {
-  const {
-    name,
-    about,
-    avatar,
-  } = req.body;
+router.post('/users', createUser);
 
-  User.create({
-    name,
-    about,
-    avatar,
-  })
+router.get('/users/:userId', getUser);
 
-    .then((user) => res.send({ data: user }))
+router.get('/users', getUsers);
 
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
-});
+router.patch('/users/me', setUser);
 
-router.get('/:id', (req, res) => {
-  User.findById(req.params.id)
-    .then((user) => res.send({ data: user }))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
-});
-
-router.get('/', (req, res) => {
-  User.find(req.params.id)
-    .then((user) => res.send({ data: user }))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка' }));
-});
+router.patch('/users/me/avatar', setAvatar);
 
 module.exports = router;
