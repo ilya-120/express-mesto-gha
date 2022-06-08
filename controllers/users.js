@@ -7,7 +7,7 @@ const {
 // Получение users
 module.exports.getUsers = (req, res) => {
   User.find({})
-    .then((users) => res.status(200).send(users))
+    .then((users) => res.send(users))
     .catch((err) => errorHandler(err, res));
 };
 // Получение user по id
@@ -17,7 +17,7 @@ module.exports.getUser = (req, res) => {
       if (!user) {
         return res.status(NOT_FOUND).send({ message: 'Пользователь не найден' });
       }
-      return res.status(200).send(user);
+      return res.send(user);
     })
     .catch((err) => errorHandler(err, res));
 };
@@ -25,7 +25,7 @@ module.exports.getUser = (req, res) => {
 module.exports.createUser = (req, res) => {
   const { name, about, avatar } = req.body;
   User.create({ name, about, avatar })
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.send(user))
     .catch((err) => errorHandler(err, res));
 };
 // Обновление информации о user
@@ -36,7 +36,7 @@ module.exports.setUser = (req, res) => {
     { name, about },
     { new: true, runValidators: true },
   )
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.send(user))
     .catch((err) => errorHandler(err, res));
 };
 // Обновление user-avatar
@@ -47,6 +47,6 @@ module.exports.setAvatar = (req, res) => {
     { avatar },
     { new: true, runValidators: true },
   )
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.send(user))
     .catch((err) => errorHandler(err, res));
 };

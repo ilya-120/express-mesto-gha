@@ -6,7 +6,7 @@ const {
 // Получение cards
 module.exports.getCards = (req, res) => {
   Card.find({})
-    .then((cards) => res.status(200).send(cards))
+    .then((cards) => res.send(cards))
     .catch((err) => errorHandler(err, res));
 };
 // Создание card
@@ -14,7 +14,7 @@ module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(200).send(card))
+    .then((card) => res.send(card))
     .catch((err) => errorHandler(err, res));
 };
 // Удаление card
@@ -24,7 +24,7 @@ module.exports.deleteCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Отсутствует.' });
       }
-      return res.status(200).send(card);
+      return res.send(card);
     })
     .catch((err) => errorHandler(err, res));
 };
@@ -39,7 +39,7 @@ module.exports.likeCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Отсутствует.' });
       }
-      return res.status(200).send(card);
+      return res.send(card);
     })
     .catch((err) => errorHandler(err, res));
 };
@@ -54,7 +54,7 @@ module.exports.dislikeCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Отсутствует.' });
       }
-      return res.status(200).send(card);
+      return res.send(card);
     })
     .catch((err) => errorHandler(err, res));
 };
