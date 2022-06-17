@@ -13,7 +13,12 @@
     "type": "git",
     "url": "git+https://github.com/ilya-120/express-mesto-gha.git"
   },
-  "keywords": ["Node", "Express", "MongoDB", "Mongoose"],
+  "keywords": [
+    "Node",
+    "Express",
+    "MongoDB",
+    "Mongoose"
+  ],
   "author": "ilya",
   "license": "ISC",
   "bugs": {
@@ -27,8 +32,13 @@
     "nodemon": "^2.0.16"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "celebrate": "^15.0.1",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "mongoose": "^6.3.5"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.5",
+    "validator": "^13.7.0"
   }
 }
