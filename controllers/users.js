@@ -55,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
       about: req.body.about,
       avatar: req.body.avatar,
     }))
-    .then((user) => res.send({
+    .then((user) => res.status(200).send({
       name: user.name,
       about: user.about,
       avatar: user.avatar,
