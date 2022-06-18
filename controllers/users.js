@@ -55,7 +55,7 @@ module.exports.createUser = (req, res, next) => {
       about: req.body.about,
       avatar: req.body.avatar,
     }))
-    .then((user) => res.status(200).send({
+    .then((user) => res.send({
       name: user.name,
       about: user.about,
       avatar: user.avatar,
@@ -105,7 +105,7 @@ module.exports.setUser = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Неверный тип данных.'));
+        return next(new BadRequestError('Неверный тип данных.'));
       }
       return next(err);
     });
@@ -121,7 +121,7 @@ module.exports.setAvatar = (req, res, next) => {
     .then((user) => res.send(user))
     .catch((err) => {
       if (err.name === 'ValidationError') {
-        next(new BadRequestError('Неверная ссылка'));
+        return next(new BadRequestError('Неверная ссылка'));
       }
       return next(err);
     });
