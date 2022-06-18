@@ -25,7 +25,7 @@ module.exports.getUser = (req, res, next) => {
 
 // возвращает информацию о текущем user
 module.exports.getCurrentUser = (req, res, next) => {
-  const { _id } = req.user._id;
+  const { _id } = req.params.id;
   User.findById(_id).then((user) => {
     // проверяем, есть ли user с таким id
     if (!user) {
