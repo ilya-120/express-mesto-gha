@@ -40,11 +40,11 @@ module.exports.getCurrentUser = (req, res, next) => {
 module.exports.createUser = (req, res, next) => {
   const { email, password } = req.body;
   if (!email || !password) {
-    next(new BadRequestError('Неправильный логин или пароль.'));
+    throw new BadRequestError('Неправильный логин или пароль.');
   }
   return User.findOne({ email }).then((user) => {
     if (user) {
-      next(new CreateError(`Пользователь с ${email} уже существует.`));
+      throw new CreateError(`Пользователь с ${email} уже существует.`);
     }
     return bcrypt.hash(password, 10);
   })
