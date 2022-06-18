@@ -10,6 +10,8 @@
 - Express.JS
 - MongoDB
 - Mongoose
+- Celebrate
+- bcrypt
 
 ## Запуск проекта
 
