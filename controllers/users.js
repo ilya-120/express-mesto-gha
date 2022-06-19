@@ -39,9 +39,6 @@ module.exports.getCurrentUser = (req, res, next) => {
 // Создание нового user
 module.exports.createUser = (req, res, next) => {
   const { email, password } = req.body;
-  if (!email || !password) {
-    throw new BadRequestError('Неправильный логин или пароль.');
-  }
   return User.findOne({ email }).then((user) => {
     if (user) {
       throw new CreateError(`Пользователь с ${email} уже существует.`);
@@ -75,10 +72,6 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   return User.findUserByCredentials(email, password)
     .then((user) => {
-      // проверим существует ли такой email или пароль
-      if (!user || !password) {
-        return next(new BadRequestError('Неверный email или пароль.'));
-      }
       // создадим токен
       const token = jwt.sign(
         { _id: user._id },
