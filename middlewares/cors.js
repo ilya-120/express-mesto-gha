@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://ilya120.nomoreparties.sbs',
-  'https://ilya120.nomoreparties.sbs',
+  'http://nexus.moscow',
+  'https://nexus.moscow',
   'http://localhost:3000',
   'https://localhost:3000',
 ];
